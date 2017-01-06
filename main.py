@@ -40,11 +40,14 @@ def index():
     with open('index.html') as f:
         idx_html = f.read()
     return template(idx_html, auth_url=AUTH_URL, client_id=client_id,
-                    str_url=str_url)
+                    str_url=str_url, redirect_uri=redirect_uri)
 
 
 @route('/cb')
 def cb():
+    if request.query.get('error'):
+        redirect('/')
+        return
     # exchange the auth code for an access token
     data = {
         "grant_type": "authorization_code",
