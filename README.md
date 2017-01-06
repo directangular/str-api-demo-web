@@ -23,3 +23,91 @@ contact+developers@directangular.com to get an app set up for yourself on
 the beta site.
 
 You should now be able to browse to http://localhost:8888 to view the app.
+
+# Important stuff
+
+The code here is quite small, but it's still useful to call out some of the
+more salient bits.  In all of the examples below I'll be using the URLs
+from the beta site, even though those can be overridden to point at your
+local setup.
+
+## Getting the token
+
+To get the token, we send the user to the following web page:
+
+```
+https://beta.shoptheroe.com/o/authorize/?response_type=code&client_id=<client_id>&state=random_state_string&redirect_uri=https://str-api-demo.herokuapp.com/cb
+```
+
+If the user clicks "authorize" on that page, they will be redirected to the
+`redirect_uri` with a `code` in the query string, which we can extract in
+bottle like so:
+
+```python
+request.query['code']
+```
+
+Once we have the `code`, we can do a `POST` to
+`https://beta.shoptheroe.com/token/` with the following arguments:
+
+```json
+{
+  "grant_type": "authorization_code",
+  "code": <code>,
+  "redirect_uri": "https://str-api-demo.herokuapp.com/cb",
+  "client_id": <client_id>,
+  "client_secret": <client_secret>,
+}
+```
+
+Note that the reason we can use `client_secret` here is because this is a
+server-side application where the code is presumably secret.  In a mobile
+app, for example, you wouldn't be able to use `client_secret` since the
+code can be extracted by the user (thereby compromising your secret).
+
+## Using the token
+
+Now that we have an access token we can make authorized requests to the STR
+API by adding the following HTTP header: `Authorization: Bearer <token>`
+(see `strapi.py`).  For example:
+
+```
+GET https://beta.shoptheroe.com/api/v2/items/
+Authorization: Bearer <token>
+```
+
+The result is a JSON object.  It includes paging in order to reduce load on
+the STR servers.  For example:
+
+```json
+{
+  "count": 579,
+  "next": "http://localhost.localdomain:8000/api/v2/items/?page=2",
+  "previous": null,
+  "results": [
+    {
+      "pk": 11466409,
+      "style": "Carly",
+      "size": "3XL",
+      "listingLink": null
+    },
+    ...
+  ]
+}
+```
+
+To traverse the paging results, just use the URLs returned in the `next` or
+`previous` properties.  Just make sure you include the `Authorization`
+header when making requests to the `next` and `previous` URLs as well.
+
+## Sneaky shimming to work around CORS
+
+You'll notice that we're actually "shimming" the API here.  Our front-end
+(javascript) code isn't actually making remote API calls to the STR API.
+Instead, it's calling our own backend code which is, in turn, making a
+remote API call to STR.  The reason for this is to get around CORS
+protection on the browser (since our server-side code isn't subject to the
+same security policies as a web browser).  This should eventually be fixed
+on the STR side so that it can be called directly.
+
+This shouldn't be a problem for mobile apps.
