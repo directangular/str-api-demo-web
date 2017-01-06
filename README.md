@@ -83,11 +83,17 @@ The access token obtained can now be used to make STR API calls.
 ## Using the token
 
 Now that we have an access token we can make authorized requests to the STR
-API by adding the following HTTP header: `Authorization: Bearer <token>`
-(see `strapi.py`).  For example:
+API by adding an HTTP header to our requests.  It should look like:
 
 ```
-GET https://beta.shoptheroe.com/api/v2/items/
+Authorization: Bearer <token>
+```
+
+See `strapi.py` for our implementation.  So a `GET` request would look like
+this:
+
+```
+GET https://beta.shoptheroe.com/api/v2/items/ HTTP/1.1
 Authorization: Bearer <token>
 ```
 
