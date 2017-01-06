@@ -5,7 +5,8 @@ import requests
 from bottle import (route, post, run, template, request, response, redirect,
                     static_file)
 
-API_BASE = "http://localhost.localdomain:8000/api/v2/"
+from strapi import StrApi
+
 OAUTH_BASE = 'http://localhost.localdomain:8000/o'
 TOKEN_URL = OAUTH_BASE + '/token/'
 AUTH_URL = OAUTH_BASE + '/authorize/'
@@ -42,16 +43,6 @@ def cb():
 
     # redirect to the "app" page with the token
     redirect('/app?access_token=' + resp['access_token'])
-
-
-class StrApi():
-    def __init__(self, access_token):
-        self.access_token = access_token
-        self._headers = {"Authorization": "Bearer " + access_token}
-
-    def get(self, path):
-        return json.loads(requests.get(API_BASE + path,
-                                       headers=self._headers).content)
 
 
 @route('/app')
