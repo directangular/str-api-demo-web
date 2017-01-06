@@ -15,6 +15,12 @@ client_id = os.getenv('CLIENT_ID')
 client_secret = os.getenv('CLIENT_SECRET')
 
 
+if client_id is None or client_secret is None:
+    print "You must supply CLIENT_ID and CLIENT_SECRET"
+    import sys
+    sys.exit(-1)
+
+
 @route('/')
 def index():
     with open('index.html') as f:
