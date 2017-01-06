@@ -47,6 +47,10 @@ bottle like so:
 request.query['code']
 ```
 
+Note that for a mobile app this redirect URI would be using a custom schema
+handled by your app, as described
+[here](https://aaronparecki.com/2012/07/29/2/oauth2-simplified#mobile-apps).
+
 Once we have the `code`, we can do a `POST` to
 `https://beta.shoptheroe.com/token/` with the following arguments:
 
