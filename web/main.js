@@ -1,5 +1,8 @@
 $(function() {
     $("body").html("Loading items...");
+
+    // Ideally we'd just query the remote API directly here, but it's a bit
+    // tedious to set up all of the CORS stuff on a local dev server...
     $.post('/app', {"access_token": access_token, "action": "items"}, function(resp) {
         if (!resp.success) {
             $("body").html("FAILED");
