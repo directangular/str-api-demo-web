@@ -78,4 +78,4 @@ def server_static(filename):
     return static_file(filename, root=os.path.dirname(__file__))
 
 
-run(host='localhost', port=os.environ.get('PORT', 8888))
+run(host='0.0.0.0', port=os.environ.get('PORT', 8888))
