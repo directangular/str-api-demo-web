@@ -7,17 +7,20 @@ from bottle import (route, post, run, template, request, response, redirect,
 
 from strapi import StrApi
 
-OAUTH_BASE = 'http://localhost.localdomain:8000/o'
-TOKEN_URL = OAUTH_BASE + '/token/'
-AUTH_URL = OAUTH_BASE + '/authorize/'
-REDIRECT_URI = "http://localhost.localdomain:8888/cb"
 
 client_id = os.getenv('CLIENT_ID')
 client_secret = os.getenv('CLIENT_SECRET')
 
+# http://localhost:8000 for dev, https://shoptheroe.com for prod
+str_url = os.getenv('STR_URL')
 
-if client_id is None or client_secret is None:
-    print """You must supply CLIENT_ID and CLIENT_SECRET.
+# http://localhost.localdomain:8888/cb for dev,
+# https://str-api-demo.herokuapp.com/cb for heroku
+redirect_uri = os.getenv('REDIRECT_URI')
+
+
+if None in [client_id, client_secret, str_url, redirect_uri]:
+    print """You must supply CLIENT_ID, CLIENT_SECRET, STR_URL, and REDIRECT_URI.
 
 When running locally you can just set them on the command line.
 
@@ -25,6 +28,11 @@ When running on heroku you should use
 https://devcenter.heroku.com/articles/config-vars"""
     import sys
     sys.exit(-1)
+
+
+OAUTH_BASE = str_url + '/o'
+TOKEN_URL = OAUTH_BASE + '/token/'
+AUTH_URL = OAUTH_BASE + '/authorize/'
 
 
 @route('/')
@@ -40,7 +48,7 @@ def cb():
     data = {
         "grant_type": "authorization_code",
         "code": request.query['code'],
-        "redirect_uri": REDIRECT_URI,
+        "redirect_uri": redirect_uri,
         "client_id": client_id,
         "client_secret": client_secret,
     }
