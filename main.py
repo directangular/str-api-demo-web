@@ -83,7 +83,8 @@ def ajax_get_items():
 
 @route('/static/<filename>')
 def server_static(filename):
-    return static_file(filename, root=os.path.dirname(__file__))
+    return static_file(filename, root=os.path.join(os.path.dirname(__file__),
+                                                   'static'))
 
 
 run(host='0.0.0.0', port=os.environ.get('PORT', 8888))
