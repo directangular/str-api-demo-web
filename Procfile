@@ -1,1 +1,1 @@
-web: echo "hello, world"
+web: python main.py
