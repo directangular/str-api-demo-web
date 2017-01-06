@@ -51,7 +51,7 @@ Note that for a mobile app this redirect URI would be using a custom schema
 handled by your app, as described
 [here](https://aaronparecki.com/2012/07/29/2/oauth2-simplified#mobile-apps).
 
-Once we have the `code`, we can do a `POST` to
+Once we have the `code`, we can get an access token by doing a `POST` to
 `https://beta.shoptheroe.com/token/` with the following arguments:
 
 ```json
@@ -68,6 +68,16 @@ Note that the reason we can use `client_secret` here is because this is a
 server-side application where the code is presumably secret.  In a mobile
 app, for example, you wouldn't be able to use `client_secret` since the
 code can be extracted by the user (thereby compromising your secret).
+
+The return value will be a JSON object of the format:
+
+```json
+{
+  "access_token": <token>
+}
+```
+
+The access token obtained can now be used to make STR API calls.
 
 ## Using the token
 
