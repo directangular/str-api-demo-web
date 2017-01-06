@@ -33,7 +33,7 @@ https://devcenter.heroku.com/articles/config-vars"""
 OAUTH_BASE = str_url + '/o'
 TOKEN_URL = OAUTH_BASE + '/token/'
 AUTH_URL = OAUTH_BASE + '/authorize/'
-
+API_BASE = str_url + '/api/v2/'
 
 @route('/')
 def index():
@@ -70,7 +70,7 @@ def app():
 @post('/app')
 def ajax_get_items():
     access_token = request.forms.get('access_token')
-    api = StrApi(access_token)
+    api = StrApi(access_token, api_base=API_BASE)
     action = request.forms.get('action')
     data = {'success': True}
     if action == 'items':
