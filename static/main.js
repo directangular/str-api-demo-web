@@ -14,7 +14,7 @@ $(function() {
                 item = resp.items[i];
                 html += "<tr><td>" + item.pk  + "</td><td>" + item.style + "</td><td>" + item.size + '</td><td>';
                 if (item.listingLink)
-                    html += '<a href="' + item.listingLink + '">Open</a>';
+                    html += '<a target="_blank" href="' + item.listingLink + '">Open</a>';
                 html += "</td></tr>";
             }
             html += "</tbody></table>";
