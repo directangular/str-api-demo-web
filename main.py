@@ -39,7 +39,8 @@ API_BASE = str_url + '/api/v2/'
 def index():
     with open('index.html') as f:
         idx_html = f.read()
-    return template(idx_html, auth_url=AUTH_URL, client_id=client_id)
+    return template(idx_html, auth_url=AUTH_URL, client_id=client_id,
+                    str_url=str_url)
 
 
 @route('/cb')
@@ -64,7 +65,7 @@ def app():
     access_token = request.query['access_token']
     with open('app.html') as f:
         app_html = f.read()
-    return template(app_html, access_token=access_token)
+    return template(app_html, access_token=access_token, str_url=str_url)
 
 
 @post('/app')

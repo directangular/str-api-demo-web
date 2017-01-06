@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Cover Template for Bootstrap</title>
+    <title>STR API Demo</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -33,24 +33,42 @@
 
   <body>
 
+
+    <div class="container">
+      <h3 class="masthead-brand">STR API Demo</h3>
+
+      <!-- Static navbar -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">STR API Demo</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="/">Home</a></li>
+            </ul>
+            <!-- <ul class="nav navbar-nav navbar-right">
+                 <li class="active"><a href="./">Default <span class="sr-only">(current)</span></a></li>
+                 <li><a href="../navbar-static-top/">Static top</a></li>
+                 <li><a href="../navbar-fixed-top/">Fixed top</a></li>
+                 </ul> -->
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav>
+    </div>
+
     <div class="site-wrapper">
 
       <div class="site-wrapper-inner">
 
         <div class="cover-container">
 
-          <!-- <div class="masthead clearfix">
-               <div class="inner">
-               <h3 class="masthead-brand">Cover</h3>
-               <nav>
-               <ul class="nav masthead-nav">
-               <li class="active"><a href="#">Home</a></li>
-               <li><a href="#">Features</a></li>
-               <li><a href="#">Contact</a></li>
-               </ul>
-               </nav>
-               </div>
-               </div> -->
 
           <div class="inner cover">
             {{!base}}
@@ -74,11 +92,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 
-% if defined('access_token'):
     <script>
+     var str_url = '{{str_url}}';
+% if defined('access_token'):
      var access_token = '{{access_token}}';
-    </script>
 % end
+    </script>
     <script src="/static/main.js"></script>
   </body>
 </html>
