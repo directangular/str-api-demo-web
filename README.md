@@ -68,6 +68,7 @@ Note that the reason we can use `client_secret` here is because this is a
 server-side application where the code is presumably secret.  In a mobile
 app, for example, you wouldn't be able to use `client_secret` since the
 code can be extracted by the user (thereby compromising your secret).
+TODO: flesh out details for mobile.
 
 The return value will be a JSON object of the format:
 
