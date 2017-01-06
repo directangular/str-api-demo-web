@@ -17,7 +17,12 @@ client_secret = os.getenv('CLIENT_SECRET')
 
 
 if client_id is None or client_secret is None:
-    print "You must supply CLIENT_ID and CLIENT_SECRET"
+    print """You must supply CLIENT_ID and CLIENT_SECRET.
+
+When running locally you can just set them on the command line.
+
+When running on heroku you should use
+https://devcenter.heroku.com/articles/config-vars"""
     import sys
     sys.exit(-1)
 
