@@ -104,6 +104,10 @@ To traverse the paging results, just use the URLs returned in the `next` or
 `previous` properties.  Just make sure you include the `Authorization`
 header when making requests to the `next` and `previous` URLs as well.
 
+## Renewing the token
+
+TODO
+
 ## Sneaky shimming to work around CORS
 
 You'll notice that we're actually "shimming" the API here.  Our front-end
