@@ -8,11 +8,14 @@ $(function() {
             $("#app").html("FAILED");
         } else {
             var html = "<h3>Items</h3>"
-            html += '<table class="table"><thead><tr><td>Item ID</td><td>Style</td><td>Size</td></tr></thead>';
+            html += '<table class="table"><thead><tr><td>Item ID</td><td>Style</td><td>Size</td><td>Listing</td></tr></thead>';
             html += "<tbody>"
             for (var i = 0; i < resp.items.length; ++i) {
                 item = resp.items[i];
-                html += "<tr><td>" + item.pk  + "</td><td>" + item.style + "</td><td>" + item.size + "</td></tr>";
+                html += "<tr><td>" + item.pk  + "</td><td>" + item.style + "</td><td>" + item.size + '</td><td>';
+                if (item.listingLink)
+                    html += '<a href="' + item.listingLink + '">Open</a>';
+                html += "</td></tr>";
             }
             html += "</tbody></table>";
             $("#app").html(html);
