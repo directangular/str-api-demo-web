@@ -75,12 +75,8 @@ def app():
 def ajax_get_items():
     access_token = request.forms.get('access_token')
     api = StrApi(access_token, api_base=API_BASE)
-    action = request.forms.get('action')
-    data = {'success': True}
-    if action == 'items':
-        data['items'] = api.get('items')
-    else:
-        data = {'success': False, 'message': 'Invalid action'}
+    path = request.forms.get('path')
+    data = api.get(path)
     response.content_type = 'application/json'
     return json.dumps(data)
 

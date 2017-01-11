@@ -18,17 +18,10 @@ class StrApi():
         self._headers = {"Authorization": "Bearer " + access_token}
         self._api_base = api_base
 
-    def do_get(self, url):
-        return json.loads(requests.get(url, headers=self._headers).content)
-
     def get(self, path):
-        url = self._api_base + path
-        results = []
-        # traverse paging
-        while True:
-            data = self.do_get(url)
-            results += data['results']
-            url = data.get('next')
-            if not url:
-                break
-        return results
+        if not path.startswith('http'):
+            url = self._api_base + path
+        else:
+            url = path
+
+        return json.loads(requests.get(url, headers=self._headers).content)
