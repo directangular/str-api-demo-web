@@ -12,6 +12,7 @@ function loadItems(urlOrPath) {
     // Ideally we'd just query the remote API directly here, but it's a bit
     // tedious to set up all of the CORS stuff on a local dev server...
     $.post('/app', {"access_token": access_token, "path": urlOrPath}, function(resp) {
+        $("#loadingRow").remove();
         var html = "";
         for (var i = 0; i < resp.results.length; ++i) {
             item = resp.results[i];
