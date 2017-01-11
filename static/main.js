@@ -9,6 +9,7 @@ function recomputeNextLink(url) {
 }
 
 function loadItems(urlOrPath) {
+    $("#itemsTable").append('<tr id="loadingRow"><td colspan="5">Loading items...</td></tr>');
     // Ideally we'd just query the remote API directly here, but it's a bit
     // tedious to set up all of the CORS stuff on a local dev server...
     $.post('/app', {"access_token": access_token, "path": urlOrPath}, function(resp) {
@@ -27,8 +28,6 @@ function loadItems(urlOrPath) {
 }
 
 $(function() {
-    $("#app").html("Loading items...");
-
     $("#btnNext").on('click', function() {
         if (!next_link)
             return;
