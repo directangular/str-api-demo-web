@@ -17,7 +17,7 @@ function loadItems(urlOrPath) {
         var html = "";
         for (var i = 0; i < resp.results.length; ++i) {
             item = resp.results[i];
-            html += '<tr><td><img width="50px;" src="' + item.image.image_thumbnail + '"></td><td>' + item.pk  + "</td><td>" + item.style + "</td><td>" + item.size + '</td><td>';
+            html += '<tr><td><img width="50px;" src="' + item.image.image_thumbnail + '"></td><td>' + item.pk  + "</td><td>" + item.itemchoice.name + "</td><td>" + item.size.name + '</td><td>';
             if (item.listingLink)
                 html += '<a target="_blank" href="' + item.listingLink + '">Open</a>';
             html += "</td></tr>";
