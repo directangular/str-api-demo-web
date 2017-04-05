@@ -52,7 +52,7 @@ handled by your app, as described
 [here](https://aaronparecki.com/2012/07/29/2/oauth2-simplified#mobile-apps).
 
 Once we have the `code`, we can get an access token by doing a `POST` to
-`https://beta.shoptheroe.com/token/` with the following arguments:
+`https://beta.shoptheroe.com/o/token/` with the following arguments:
 
 ```json
 {
