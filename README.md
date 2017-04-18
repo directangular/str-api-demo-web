@@ -31,6 +31,15 @@ more salient bits.  In all of the examples below I'll be using the URLs
 from the beta site, even though those can be overridden to point at your
 local setup.
 
+Also remember that this is _proof of concept_ code.  You should *not* carry
+over any of the following patterns to your app:
+
+- Putting the access token in the URL.  That's just plain lazy and not
+  secure at all.  It's like embedding the user's password in the URL.
+  Instead, the user's access token (and refresh token) should be persisted
+  somewhere secure (i.e. not on the client's device) and associated with
+  the user's account in your app.
+
 ## Getting the token
 
 To get the token, we send the user to the following web page:
