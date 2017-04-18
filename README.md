@@ -121,9 +121,9 @@ To traverse the paging results, just use the URLs returned in the `next` or
 `previous` properties.  Just make sure you include the `Authorization`
 header when making requests to the `next` and `previous` URLs as well.
 
-## Renewing the token
+## Refreshing the token
 
-TODO
+See [the str-api-docs](http://www.directangular.com/str-api-docs/#get-an-access-token).
 
 ## Sneaky shimming to work around CORS
 
