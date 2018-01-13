@@ -10,7 +10,7 @@ To run this app locally, grab the code and set up a python environment:
 $ git clone https://github.com/directangular/str-api-demo-web.git
 $ cd str-api-demo-web
 $ virtualenv env
-$ env/bin/install -r requirements.txt
+$ env/bin/pip install -r requirements.txt
 $ REDIRECT_URI=http://localhost.localdomain:8888/cb \
     STR_URL=https://beta.shoptheroe.com \
     CLIENT_ID=<your_client_id> \
