@@ -13,8 +13,8 @@ $ virtualenv env
 $ env/bin/pip install -r requirements.txt
 $ REDIRECT_URI=http://localhost.localdomain:8888/cb \
     STR_URL=https://beta.shoptheroe.com \
-    CLIENT_ID=<your_client_id> \
-    CLIENT_SECRET=<your_client_secret> \
+    CLIENT_ID=$YOUR_CLIENT_ID \
+    CLIENT_SECRET=$YOUR_CLIENT_SECRET \
     env/bin/python main.py
 ```
 
