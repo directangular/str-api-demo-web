@@ -11,7 +11,7 @@ from strapi import StrApi
 client_id = os.getenv('CLIENT_ID')
 client_secret = os.getenv('CLIENT_SECRET')
 
-# http://localhost:8000 for dev, https://shoptheroe.com for prod
+# http://localhost:8000 for dev, https://sonlet.com for prod
 str_url = os.getenv('STR_URL')
 
 # http://localhost.localdomain:8888/cb for dev,

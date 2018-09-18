@@ -1,5 +1,5 @@
 This is a simple [Python Bottle](http://bottlepy.org/) web app
-demonstrating basic usage of the ShopTheRoe API.  A live instance of this
+demonstrating basic usage of the Sonlet API.  A live instance of this
 app is available [here](https://str-api-demo.herokuapp.com).
 
 # Running locally
@@ -12,7 +12,7 @@ $ cd str-api-demo-web
 $ virtualenv env
 $ env/bin/pip install -r requirements.txt
 $ REDIRECT_URI=http://localhost.localdomain:8888/cb \
-    STR_URL=https://beta.shoptheroe.com \
+    STR_URL=https://beta.sonlet.com \
     CLIENT_ID=$YOUR_CLIENT_ID \
     CLIENT_SECRET=$YOUR_CLIENT_SECRET \
     env/bin/python main.py
@@ -45,7 +45,7 @@ over any of the following patterns to your app:
 To get the token, we send the user to the following web page:
 
 ```
-https://beta.shoptheroe.com/o/authorize/?response_type=code&client_id=<client_id>&state=random_state_string&redirect_uri=https://str-api-demo.herokuapp.com/cb
+https://beta.sonlet.com/o/authorize/?response_type=code&client_id=<client_id>&state=random_state_string&redirect_uri=https://str-api-demo.herokuapp.com/cb
 ```
 
 If the user clicks "authorize" on that page, they will be redirected to the
@@ -61,7 +61,7 @@ handled by your app, as described
 [here](https://aaronparecki.com/2012/07/29/2/oauth2-simplified#mobile-apps).
 
 Once we have the `code`, we can get an access token by doing a `POST` to
-`https://beta.shoptheroe.com/o/token/` with the following arguments:
+`https://beta.sonlet.com/o/token/` with the following arguments:
 
 ```json
 {
@@ -102,7 +102,7 @@ See `strapi.py` for our implementation.  So a `GET` request would look like
 this:
 
 ```
-GET https://beta.shoptheroe.com/api/v2/items/ HTTP/1.1
+GET https://beta.sonlet.com/api/v2/items/ HTTP/1.1
 Authorization: Bearer <token>
 ```
 
